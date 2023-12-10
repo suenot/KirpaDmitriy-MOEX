@@ -19,3 +19,14 @@ app.add_middleware(
 @app.get("/all_algos")
 async def algos_list():
     return algos.get_all_algos_names()
+
+
+@app.get("/get_algo_params")
+async def get_algo_params(algo: str):
+    return algos.get_algo_params(algo)
+
+
+@app.get("/execute_algo")
+async def execute_algo(algo: str, **kwargs):
+    kwargs = {k: v for k, v in kwargs.items() if k in algos.get_algo_params(algo)}
+    return await algos.execute_algo(algo, **kwargs)

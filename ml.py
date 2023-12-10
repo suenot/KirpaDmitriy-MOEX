@@ -125,7 +125,7 @@ class Algo:
     def get_all_algos_names(self) -> list[str]:
         return [i for i in self.models]
 
-    def execute_algo(self, name: str, **user_params):
+    async def execute_algo(self, name: str, **user_params):
         if 'train' in user_params:
             if user_params['train']:
                 X_train, y_train, X_test, y_test = self.get_data(gen_dates('2023-01-01', '2023-01-05'))
