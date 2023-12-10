@@ -15,9 +15,11 @@ def gen_dates(start_date, finish_date):
             30, 31, 30,
             31, 31, 30,
             31, 30, 31]
+    print(month_a, month_b, month_b + 12 * (year_b - year_a))
     for month in range(month_a, month_b + 12 * (year_b - year_a)):
         year = year_a + (month - 1) // 12
         days[1] = 28 + (year % 4 == 0)
+        print("!", day_a, days, days[month % 12 - 1] + 1)
         for day in range(day_a, days[month % 12 - 1] + 1):
             dates.append(f'{year}-{((month - 1) % 12 + 1):02d}-{day:02d}')
         day_a = 1
