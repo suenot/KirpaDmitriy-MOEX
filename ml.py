@@ -16,7 +16,7 @@ def gen_dates(start_date, finish_date):
             31, 31, 30,
             31, 30, 31]
     print(month_a, month_b, month_b + 12 * (year_b - year_a))
-    for month in range(month_a, month_b + 12 * (year_b - year_a)):
+    for month in range(month_a, month_b + 12 * (year_b - year_a) + 1):
         year = year_a + (month - 1) // 12
         days[1] = 28 + (year % 4 == 0)
         print("!", day_a, days, days[month % 12 - 1] + 1)
@@ -66,7 +66,6 @@ class Algo:
                 df = pd.read_csv(url, sep=';', skiprows=2)
                 tradestats = pd.concat([tradestats, df])
                 print(tradestats)
-                return []
                 if df.shape[0] < 1000:
                     break
                 time.sleep(0.5)
@@ -133,7 +132,6 @@ class Algo:
         # if 'train' in user_params:
         #     if user_params['train']:
         print(gen_dates('2023-01-01', '2023-01-05'))
-        return []
         X_train, y_train, X_test, y_test = self.get_data(gen_dates('2023-01-01', '2023-01-05'))
         self.models[name].fit(X_train, y_train)
         return gen_dates('2023-01-01', '2023-01-05'), self.models[name].predict(X_test)
