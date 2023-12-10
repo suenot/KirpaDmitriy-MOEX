@@ -126,11 +126,12 @@ class Algo:
         return [i for i in self.models]
 
     async def execute_algo(self, name: str, **user_params):
-        if 'train' in user_params:
-            if user_params['train']:
-                X_train, y_train, X_test, y_test = self.get_data(gen_dates('2023-01-01', '2023-01-05'))
-                self.models['name'].fit(X_train, y_train)
+        # if 'train' in user_params:
+        #     if user_params['train']:
+        X_train, y_train, X_test, y_test = self.get_data(gen_dates('2023-01-01', '2023-01-05'))
+        self.models[name].fit(X_train, y_train)
         return gen_dates('2023-01-01', '2023-01-05'), self.models[name].predict(X_test)
+        # return []
 
     def get_algo_params(self, name: str):
         """Отдаёт словарь. Ключи - названия параметров, которые может крутить пользователь.
