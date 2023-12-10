@@ -28,6 +28,6 @@ async def get_algo_params(algo: str):
 
 @app.get("/execute_algo")
 async def execute_algo(request: Request):
-    algo = request.query_params.pop("algo")
+    algo = request.query_params["algo"]
     kwargs = {k: v for k, v in request.query_params.items() if k in algos.get_algo_params(algo)}
     return await algos.execute_algo(algo, **kwargs)
