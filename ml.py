@@ -63,6 +63,8 @@ class Algo:
                 url = f'https://iss.moex.com/iss/datashop/algopack/eq/tradestats.csv?date={date}&start={cursor * 1000}&iss.only=data'
                 df = pd.read_csv(url, sep=';', skiprows=2)
                 tradestats = pd.concat([tradestats, df])
+                print(tradestats)
+                return []
                 if df.shape[0] < 1000:
                     break
                 time.sleep(0.5)
