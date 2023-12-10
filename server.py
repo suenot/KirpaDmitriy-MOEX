@@ -1,6 +1,6 @@
 from fastapi.middleware.cors import CORSMiddleware
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 
 from ml import algos
 
@@ -27,6 +27,7 @@ async def get_algo_params(algo: str):
 
 
 @app.get("/execute_algo")
-async def execute_algo(algo: str, **kwargs):
-    kwargs = {k: v for k, v in kwargs.items() if k in algos.get_algo_params(algo)}
+async def execute_algo(request: Request):
+    algo = request.query_params.pop("algo")
+    kwargs = {k: v for k, v in request.query_params.items() if k in algos.get_algo_params(algo)}
     return await algos.execute_algo(algo, **kwargs)
