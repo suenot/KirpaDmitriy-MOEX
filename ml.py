@@ -1,5 +1,5 @@
 import pandas as pd
-from xgboost as XGBRegressor
+from xgboost import XGBRegressor
 import time
 
 
