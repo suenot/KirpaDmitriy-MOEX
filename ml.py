@@ -97,6 +97,9 @@ class Algo:
             for period in periods:
                 df[i + '_dyn_' + str(period)] = df[i] - df[i + str(period)]
 
+        for i in df.columns:
+            df[i] = df[i].astype(float)
+
         df_train = df.iloc[:int(len(df) * 0.8)]
         df_test = df.iloc[int(len(df) * 0.8):]
         train_feats = list(df.columns[134:]) + ['vol', 'val', 'trades', 'pr_change',
