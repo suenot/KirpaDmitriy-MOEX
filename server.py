@@ -1830,4 +1830,4 @@ async def execute_algo(request: Request):
     # algo = request.query_params["algo"]
     # kwargs = {k: v for k, v in request.query_params.items() if k in algos.get_algo_params(algo)}
     # return await algos.execute_algo(algo, **kwargs)
-    return [int(el) for el in a.split("\n")]
+    return [float(el) for el in a.split("\n")]
